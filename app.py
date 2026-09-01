@@ -101,8 +101,24 @@ st.markdown(
         font-weight: 700;
     }
 
-    .terms-button-space {
-        margin-top: 26px;
+    .terms-button button {
+        background: none !important;
+        border: none !important;
+        color: #2563eb !important;
+        padding: 0 !important;
+        text-decoration: underline !important;
+        font-weight: 600 !important;
+        box-shadow: none !important;
+    }
+
+    .terms-dialog {
+        line-height: 1.7;
+        color: #333333;
+    }
+
+    .terms-dialog h3 {
+        color: #4b1f6f;
+        margin-top: 20px;
     }
 
     .footer-text {
@@ -122,75 +138,92 @@ st.markdown(
 # TERMS & CONDITIONS DIALOG
 # ==================================================
 
-@st.dialog(
-    "📜 Terms & Conditions",
-    width="large"
-)
+@st.dialog("Terms & Conditions")
 def show_terms_and_conditions():
 
     st.markdown(
         """
-### Greetings from PhysicsWallah Limited!
+        ## Greetings from PhysicsWallah Limited!
 
-At PhysicsWallah Ltd. (PW), we provide personalized academic and Olympiad training programs.
+        At PhysicsWallah Ltd. (PW), we provide personalized
+        academic and Olympiad training programs.
 
-By submitting this form, I give PW permission to use my/my child’s name, scores, photographs, videos, and testimonials for promotional and educational purposes on platforms such as social media, television, hoardings, interviews, websites, and the PW app.
+        By submitting this form, I give PW permission to use
+        my/my child’s name, scores, photographs, videos, and
+        testimonials for promotional and educational purposes
+        on platforms such as social media, television,
+        hoardings, interviews, websites, and the PW app.
 
-PW may also share details of future exam participation for publicity or academic updates, while ensuring full compliance with Indian laws, PW’s User and Privacy Policies, and GDPR standards. PW guarantees that no data will be misused.
+        PW may also share details of future exam participation
+        for publicity or academic updates, while ensuring full
+        compliance with Indian laws, PW’s User and Privacy
+        Policies, and GDPR standards. PW guarantees that no
+        data will be misused.
 
----
+        ### Purpose of Consent
 
-### Purpose of Consent
+        To allow PW to feature the student's achievements,
+        learning journey, and experiences in campaigns that
+        motivate other aspirants.
 
-To allow PW to feature the student's achievements, learning journey, and experiences in campaigns that motivate other aspirants.
+        ### Conditions of Usage
 
----
+        **Preliminary Consent:** This is initial consent for use
+        of personal and media details.
 
-### Conditions of Usage
+        **Final Consent:** PW may contact again for written
+        approval before publishing.
 
-**Preliminary Consent:**  
-This is initial consent for use of personal and media details.
+        **Opt-Out Option:** Consent can be withdrawn anytime
+        by notifying PW in writing.
 
-**Final Consent:**  
-PW may contact again for written approval before publishing.
+        **No Misuse:** PW will use all data responsibly.
 
-**Opt-Out Option:**  
-Consent can be withdrawn anytime by notifying PW in writing.
+        **No Monetary Benefit:** No financial or other
+        compensation is applicable.
 
-**No Misuse:**  
-PW will use all data responsibly.
+        **Duration:** Consent remains valid until withdrawn
+        in writing.
 
-**No Monetary Benefit:**  
-No financial or other compensation is applicable.
+        ### Final Consent for Promotional Use
 
-**Duration:**  
-Consent remains valid until withdrawn in writing.
+        As discussed earlier, we seek your final consent to
+        feature your success story, including your name,
+        photographs, videos, and testimonials, in the following
+        media:
 
----
+        • Print publications (brochures, magazines, posters)
 
-### Final Consent for Promotional Use
+        • Digital platforms (official websites, online blogs,
+        e-magazines)
 
-As discussed earlier, we seek your final consent to feature your success story, including your name, photographs, videos, and testimonials, in the following media:
+        • Social media platforms (YouTube, Instagram,
+        Facebook, LinkedIn, etc.)
 
-• Print publications (brochures, magazines, posters)
+        • Video campaigns, advertisements, and other publicity
+        materials
 
-• Digital platforms (official websites, online blogs, e-magazines)
+        **1. I/We hereby solemnly declare that the information
+        provided in this form are true to the best of my
+        knowledge and belief.**
 
-• Social media platforms (YouTube, Instagram, Facebook, LinkedIn, etc.)
+        **2. I/We give our full consent to PhysicsWallah for
+        using the above-mentioned assets for the above-said
+        purposes.**
 
-• Video campaigns, advertisements, and other publicity materials
-
----
-
-**1. I/We hereby solemnly declare that the information provided in this form are true to the best of my knowledge and belief.**
-
-**2. I/We give our full consent to PhysicsWallah for using the above-mentioned assets for the above-said purposes.**
-
-**3. Further, as the parent/guardian of the student, I undertake to monitor their studies and behaviour, particularly their emotional well-being, throughout their time at the institute. Should my child encounter any unavoidable circumstances, engage in self-destructive activities, or be found guilty of improper conduct/behaviour in class, Telegram groups, or any medium of exchange, I will not hold the institute or its management responsible. I understand and agree that any decision taken by PhysicsWallah will be final in all circumstances or situations.**
+        **3. Further, as the parent/guardian of the student, I
+        undertake to monitor their studies and behaviour,
+        particularly their emotional well-being, throughout
+        their time at the institute. Should my child encounter
+        any unavoidable circumstances, engage in
+        self-destructive activities, or be found guilty of
+        improper conduct/behaviour in class, Telegram groups,
+        or any medium of exchange, I will not hold the institute
+        or its management responsible. I understand and agree
+        that any decision taken by PhysicsWallah will be final
+        in all circumstances or situations.**
         """
     )
-
-    st.divider()
 
     if st.button(
         "Close",
@@ -214,7 +247,9 @@ def get_google_sheet():
         ]
     )
 
-    client = gspread.authorize(credentials)
+    client = gspread.authorize(
+        credentials
+    )
 
     spreadsheet = client.open_by_key(
         st.secrets["SPREADSHEET_ID"]
@@ -253,7 +288,6 @@ def load_cutoff_data():
         .str.strip()
     )
 
-    # Required columns
     required_columns = [
         "Class",
         "State",
@@ -262,9 +296,11 @@ def load_cutoff_data():
     ]
 
     missing_columns = [
+
         col
         for col in required_columns
         if col not in df.columns
+
     ]
 
     if missing_columns:
@@ -504,10 +540,13 @@ class_options = sorted(
 
 
 class_options = [
+
     int(x)
     if float(x).is_integer()
     else float(x)
+
     for x in class_options
+
 ]
 
 
@@ -570,10 +609,18 @@ with st.form("selection_form"):
 
     with col2:
 
+        # ==========================================
+        # EDITABLE DOB
+        # Range:
+        # 01 Jan 2007 to 12 Dec 2014
+        # ==========================================
+
         dob = st.date_input(
             "Date of Birth *",
-            min_value=date(1990, 1, 1),
-            max_value=date.today()
+            value=date(2010, 1, 1),
+            min_value=date(2007, 1, 1),
+            max_value=date(2014, 12, 12),
+            format="DD/MM/YYYY"
         )
 
 
@@ -640,38 +687,23 @@ with st.form("selection_form"):
     # TERMS & CONDITIONS
     # ==============================================
 
-    st.markdown("")
-
-    consent_col1, consent_col2 = st.columns(
-        [3, 2]
+    st.markdown(
+        """
+        <div class="section-title">
+            📜 Consent
+        </div>
+        """,
+        unsafe_allow_html=True
     )
 
 
-    with consent_col1:
+    consent = st.checkbox(
+        "I have read and agree to the Terms & Conditions *"
+    )
 
-        consent = st.checkbox(
-            "I have read and agree to the Terms & Conditions *"
-        )
-
-
-    with consent_col2:
-
-        st.markdown(
-            '<div class="terms-button-space"></div>',
-            unsafe_allow_html=True
-        )
-
-        open_terms = st.form_submit_button(
-            "📄 Terms & Conditions",
-            width="stretch"
-        )
-
-
-    # ==============================================
-    # MAIN SUBMIT BUTTON
-    # ==============================================
 
     st.write("")
+
 
     submitted = st.form_submit_button(
         "🔍 CHECK MY SELECTION PREDICTION",
@@ -680,10 +712,26 @@ with st.form("selection_form"):
 
 
 # ==================================================
-# OPEN TERMS DIALOG
+# TERMS BUTTON OUTSIDE FORM
 # ==================================================
 
-if open_terms:
+st.markdown(
+    '<div class="terms-button">',
+    unsafe_allow_html=True
+)
+
+terms_clicked = st.button(
+    "📄 View Terms & Conditions",
+    key="terms_button"
+)
+
+st.markdown(
+    '</div>',
+    unsafe_allow_html=True
+)
+
+
+if terms_clicked:
 
     show_terms_and_conditions()
 
@@ -693,7 +741,6 @@ if open_terms:
 # ==================================================
 
 if submitted:
-
 
     # ==============================================
     # VALIDATE NAME
@@ -797,6 +844,24 @@ if submitted:
 
 
     # ==============================================
+    # VALIDATE DOB
+    # ==============================================
+
+    if (
+        dob < date(2007, 1, 1)
+        or
+        dob > date(2014, 12, 12)
+    ):
+
+        st.error(
+            "Date of Birth must be between "
+            "01/01/2007 and 12/12/2014."
+        )
+
+        st.stop()
+
+
+    # ==============================================
     # VALIDATE MARKS
     # ==============================================
 
@@ -810,13 +875,13 @@ if submitted:
 
 
     # ==============================================
-    # VALIDATE TERMS
+    # VALIDATE CONSENT
     # ==============================================
 
     if not consent:
 
         st.error(
-            "Please read and accept the Terms & Conditions before submitting."
+            "Please accept the Terms & Conditions before submitting."
         )
 
         st.stop()
@@ -855,7 +920,8 @@ if submitted:
 
         (
             cutoff_df["Class"]
-            == selected_class_numeric
+            ==
+            selected_class_numeric
         )
 
         &
@@ -864,9 +930,7 @@ if submitted:
             cutoff_df["State"]
             .str.lower()
             .str.strip()
-
             ==
-
             state.lower().strip()
         )
 
@@ -876,9 +940,7 @@ if submitted:
             cutoff_df["Gender"]
             .str.lower()
             .str.strip()
-
             ==
-
             gender.lower().strip()
         )
 
@@ -904,9 +966,11 @@ if submitted:
     # ==============================================
 
     cutoff_marks = float(
+
         matching_rows.iloc[0][
             "Cut Off Marks"
         ]
+
     )
 
 
@@ -915,9 +979,11 @@ if submitted:
     # ==============================================
 
     marks_difference = (
+
         float(marks)
         -
         float(cutoff_marks)
+
     )
 
 
@@ -1083,7 +1149,7 @@ if submitted:
         str(email.strip()),
         str(cleaned_phone),
         str(gender),
-        str(dob),
+        dob.strftime("%d/%m/%Y"),
         str(roll_no.strip()),
         str(ioqm_registration_no.strip()),
 
@@ -1105,11 +1171,12 @@ if submitted:
         # Selection Chance
         int(selection_chance),
 
-        # Terms Accepted
+        # Consent
         "Yes",
 
         # Submission Time
         str(submission_time)
+
     ]
 
 
@@ -1194,8 +1261,6 @@ if submitted:
 
     if result_type == "negative":
 
-        # Only show marks when selection is not likely
-
         st.metric(
             "Your Marks",
             f"{float(marks):g}"
@@ -1203,8 +1268,6 @@ if submitted:
 
 
     else:
-
-        # Show marks and selection chance
 
         col1, col2 = st.columns(2)
 
