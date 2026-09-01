@@ -101,22 +101,8 @@ st.markdown(
         font-weight: 700;
     }
 
-    .terms-container {
-        background: #ffffff;
-        border: 1px solid #d8b4fe;
-        border-radius: 16px;
-        padding: 30px;
-        margin-top: 20px;
-        line-height: 1.7;
-        color: #333333;
-    }
-
-    .terms-heading {
-        font-size: 1.5rem;
-        font-weight: 800;
-        color: #4b1f6f;
-        margin-top: 25px;
-        margin-bottom: 10px;
+    .terms-button-space {
+        margin-top: 26px;
     }
 
     .footer-text {
@@ -133,170 +119,84 @@ st.markdown(
 
 
 # ==================================================
-# TERMS & CONDITIONS PAGE
+# TERMS & CONDITIONS DIALOG
 # ==================================================
 
-page_name = st.query_params.get(
-    "page",
-    "home"
+@st.dialog(
+    "📜 Terms & Conditions",
+    width="large"
 )
-
-
-if page_name == "terms":
+def show_terms_and_conditions():
 
     st.markdown(
         """
-        <div class="main-title">
-            Terms & Conditions
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+### Greetings from PhysicsWallah Limited!
 
-    st.markdown(
-        """
-        <div class="terms-container">
+At PhysicsWallah Ltd. (PW), we provide personalized academic and Olympiad training programs.
 
-        <p>
-        Greetings from PhysicsWallah Limited!
-        </p>
+By submitting this form, I give PW permission to use my/my child’s name, scores, photographs, videos, and testimonials for promotional and educational purposes on platforms such as social media, television, hoardings, interviews, websites, and the PW app.
 
-        <p>
-        At PhysicsWallah Ltd. (PW), we provide personalized academic
-        and Olympiad training programs.
-        </p>
+PW may also share details of future exam participation for publicity or academic updates, while ensuring full compliance with Indian laws, PW’s User and Privacy Policies, and GDPR standards. PW guarantees that no data will be misused.
 
-        <p>
-        By submitting this form, I give PW permission to use my/my
-        child’s name, scores, photographs, videos, and testimonials
-        for promotional and educational purposes on platforms such as
-        social media, television, hoardings, interviews, websites,
-        and the PW app.
-        </p>
+---
 
-        <p>
-        PW may also share details of future exam participation for
-        publicity or academic updates, while ensuring full compliance
-        with Indian laws, PW’s User and Privacy Policies, and GDPR
-        standards. PW guarantees that no data will be misused.
-        </p>
+### Purpose of Consent
 
-        <div class="terms-heading">
-        Purpose of Consent
-        </div>
+To allow PW to feature the student's achievements, learning journey, and experiences in campaigns that motivate other aspirants.
 
-        <p>
-        To allow PW to feature the student's achievements, learning
-        journey, and experiences in campaigns that motivate other
-        aspirants.
-        </p>
+---
 
-        <div class="terms-heading">
-        Conditions of Usage
-        </div>
+### Conditions of Usage
 
-        <p>
-        <strong>Preliminary Consent:</strong>
-        This is initial consent for use of personal and media details.
-        </p>
+**Preliminary Consent:**  
+This is initial consent for use of personal and media details.
 
-        <p>
-        <strong>Final Consent:</strong>
-        PW may contact again for written approval before publishing.
-        </p>
+**Final Consent:**  
+PW may contact again for written approval before publishing.
 
-        <p>
-        <strong>Opt-Out Option:</strong>
-        Consent can be withdrawn anytime by notifying PW in writing.
-        </p>
+**Opt-Out Option:**  
+Consent can be withdrawn anytime by notifying PW in writing.
 
-        <p>
-        <strong>No Misuse:</strong>
-        PW will use all data responsibly.
-        </p>
+**No Misuse:**  
+PW will use all data responsibly.
 
-        <p>
-        <strong>No Monetary Benefit:</strong>
-        No financial or other compensation is applicable.
-        </p>
+**No Monetary Benefit:**  
+No financial or other compensation is applicable.
 
-        <p>
-        <strong>Duration:</strong>
-        Consent remains valid until withdrawn in writing.
-        </p>
+**Duration:**  
+Consent remains valid until withdrawn in writing.
 
-        <div class="terms-heading">
-        Final Consent for Promotional Use
-        </div>
+---
 
-        <p>
-        As discussed earlier, we seek your final consent to feature
-        your success story, including your name, photographs, videos,
-        and testimonials, in the following media:
-        </p>
+### Final Consent for Promotional Use
 
-        <p>
-        • Print publications (brochures, magazines, posters)
-        </p>
+As discussed earlier, we seek your final consent to feature your success story, including your name, photographs, videos, and testimonials, in the following media:
 
-        <p>
-        • Digital platforms (official websites, online blogs,
-        e-magazines)
-        </p>
+• Print publications (brochures, magazines, posters)
 
-        <p>
-        • Social media platforms (YouTube, Instagram, Facebook,
-        LinkedIn, etc.)
-        </p>
+• Digital platforms (official websites, online blogs, e-magazines)
 
-        <p>
-        • Video campaigns, advertisements, and other publicity
-        materials
-        </p>
+• Social media platforms (YouTube, Instagram, Facebook, LinkedIn, etc.)
 
-        <p>
-        <strong>
-        1. I/We hereby solemnly declare that the information provided
-        in this form are true to the best of my knowledge and belief.
-        </strong>
-        </p>
+• Video campaigns, advertisements, and other publicity materials
 
-        <p>
-        <strong>
-        2. I/We give our full consent to PhysicsWallah for using the
-        above-mentioned assets for the above-said purposes.
-        </strong>
-        </p>
+---
 
-        <p>
-        <strong>
-        3. Further, as the parent/guardian of the student, I undertake
-        to monitor their studies and behaviour, particularly their
-        emotional well-being, throughout their time at the institute.
-        Should my child encounter any unavoidable circumstances,
-        engage in self-destructive activities, or be found guilty of
-        improper conduct/behaviour in class, Telegram groups, or any
-        medium of exchange, I will not hold the institute or its
-        management responsible. I understand and agree that any
-        decision taken by PhysicsWallah will be final in all
-        circumstances or situations.
-        </strong>
-        </p>
+**1. I/We hereby solemnly declare that the information provided in this form are true to the best of my knowledge and belief.**
 
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+**2. I/We give our full consent to PhysicsWallah for using the above-mentioned assets for the above-said purposes.**
 
-    st.markdown("")
-
-    st.markdown(
-        """
-        ### ← [Back to Selection Predictor](?page=home)
+**3. Further, as the parent/guardian of the student, I undertake to monitor their studies and behaviour, particularly their emotional well-being, throughout their time at the institute. Should my child encounter any unavoidable circumstances, engage in self-destructive activities, or be found guilty of improper conduct/behaviour in class, Telegram groups, or any medium of exchange, I will not hold the institute or its management responsible. I understand and agree that any decision taken by PhysicsWallah will be final in all circumstances or situations.**
         """
     )
 
-    st.stop()
+    st.divider()
+
+    if st.button(
+        "Close",
+        width="stretch"
+    ):
+        st.rerun()
 
 
 # ==================================================
@@ -742,19 +642,50 @@ with st.form("selection_form"):
 
     st.markdown("")
 
-    consent = st.checkbox(
-        "I have read and agree to the "
-        "[terms & conditions](?page=terms) *"
+    consent_col1, consent_col2 = st.columns(
+        [3, 2]
     )
 
 
-    st.write("")
+    with consent_col1:
 
+        consent = st.checkbox(
+            "I have read and agree to the Terms & Conditions *"
+        )
+
+
+    with consent_col2:
+
+        st.markdown(
+            '<div class="terms-button-space"></div>',
+            unsafe_allow_html=True
+        )
+
+        open_terms = st.form_submit_button(
+            "📄 Terms & Conditions",
+            width="stretch"
+        )
+
+
+    # ==============================================
+    # MAIN SUBMIT BUTTON
+    # ==============================================
+
+    st.write("")
 
     submitted = st.form_submit_button(
         "🔍 CHECK MY SELECTION PREDICTION",
         width="stretch"
     )
+
+
+# ==================================================
+# OPEN TERMS DIALOG
+# ==================================================
+
+if open_terms:
+
+    show_terms_and_conditions()
 
 
 # ==================================================
@@ -879,7 +810,7 @@ if submitted:
 
 
     # ==============================================
-    # VALIDATE TERMS ACCEPTANCE
+    # VALIDATE TERMS
     # ==============================================
 
     if not consent:
@@ -973,11 +904,9 @@ if submitted:
     # ==============================================
 
     cutoff_marks = float(
-
         matching_rows.iloc[0][
             "Cut Off Marks"
         ]
-
     )
 
 
@@ -1214,9 +1143,9 @@ if submitted:
     st.divider()
 
 
-    # ----------------------------------------------
+    # ==============================================
     # POSITIVE RESULT
-    # ----------------------------------------------
+    # ==============================================
 
     if result_type == "positive":
 
@@ -1229,9 +1158,9 @@ if submitted:
         )
 
 
-    # ----------------------------------------------
+    # ==============================================
     # WARNING RESULT
-    # ----------------------------------------------
+    # ==============================================
 
     elif result_type == "warning":
 
@@ -1244,9 +1173,9 @@ if submitted:
         )
 
 
-    # ----------------------------------------------
+    # ==============================================
     # NEGATIVE RESULT
-    # ----------------------------------------------
+    # ==============================================
 
     else:
 
@@ -1265,7 +1194,7 @@ if submitted:
 
     if result_type == "negative":
 
-        # Show only marks when selection is not likely
+        # Only show marks when selection is not likely
 
         st.metric(
             "Your Marks",
