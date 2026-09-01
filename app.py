@@ -101,150 +101,22 @@ st.markdown(
         font-weight: 700;
     }
 
-    .consent-box {
+    .terms-container {
         background: #ffffff;
         border: 1px solid #d8b4fe;
-        border-radius: 14px;
-        padding: 22px;
+        border-radius: 16px;
+        padding: 30px;
         margin-top: 20px;
-        margin-bottom: 10px;
         line-height: 1.7;
         color: #333333;
     }
 
-    .consent-heading {
-        font-size: 1.4rem;
+    .terms-heading {
+        font-size: 1.5rem;
         font-weight: 800;
         color: #4b1f6f;
-        margin-bottom: 15px;
-    }
-
-    .consent-subheading {
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: #4b1f6f;
-        margin-top: 20px;
-        margin-bottom: 8px;
-    }
-
-    .result-card-positive {
-        background: #eaf8ef;
-        border: 2px solid #22c55e;
-        padding: 30px;
-        border-radius: 18px;
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    .result-card-warning {
-        background: #fff8e7;
-        border: 2px solid #f59e0b;
-        padding: 30px;
-        border-radius: 18px;
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    .result-card-negative {
-        background: #fff0f0;
-        border: 2px solid #ef4444;
-        padding: 30px;
-        border-radius: 18px;
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    .result-icon {
-        font-size: 3rem;
-        margin-bottom: 10px;
-    }
-
-    .result-name {
-        font-size: 1.7rem;
-        font-weight: 700;
-        margin-bottom: 15px;
-        color: #222222;
-    }
-
-    .probably-qualified {
-        color: #15803d;
-        font-size: 1.8rem;
-        font-weight: 800;
-        margin-bottom: 12px;
-    }
-
-    .possible-selection {
-        color: #b45309;
-        font-size: 1.8rem;
-        font-weight: 800;
-        margin-bottom: 12px;
-    }
-
-    .not-likely {
-        color: #dc2626;
-        font-size: 1.8rem;
-        font-weight: 800;
-        margin-bottom: 12px;
-    }
-
-    .result-description {
-        color: #555555;
-        font-size: 1rem;
-        line-height: 1.6;
-    }
-
-    .marks-card {
-        background: white;
-        border: 1px solid #e5e7eb;
-        border-radius: 16px;
-        padding: 25px;
-        text-align: center;
-        margin-top: 20px;
-        box-shadow: 0px 4px 12px rgba(0,0,0,0.05);
-    }
-
-    .marks-label {
-        color: #666666;
-        font-size: 1rem;
-    }
-
-    .marks-value {
-        font-size: 2.5rem;
-        font-weight: 800;
-        color: #4b1f6f;
-        margin-top: 5px;
-    }
-
-    .chance-card {
-        background: #ffffff;
-        border: 2px solid #7c3aed;
-        border-radius: 16px;
-        padding: 25px;
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    .chance-label {
-        color: #666666;
-        font-size: 1rem;
-    }
-
-    .chance-value {
-        font-size: 3rem;
-        font-weight: 800;
-        color: #7c3aed;
-        margin-top: 5px;
-    }
-
-    .disclaimer {
-        background: #f3f4f6;
-        border-left: 4px solid #6b7280;
-        padding: 16px;
-        border-radius: 8px;
         margin-top: 25px;
-        color: #444444;
-        line-height: 1.6;
-        font-size: 0.92rem;
+        margin-bottom: 10px;
     }
 
     .footer-text {
@@ -258,6 +130,173 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
+
+# ==================================================
+# TERMS & CONDITIONS PAGE
+# ==================================================
+
+page_name = st.query_params.get(
+    "page",
+    "home"
+)
+
+
+if page_name == "terms":
+
+    st.markdown(
+        """
+        <div class="main-title">
+            Terms & Conditions
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown(
+        """
+        <div class="terms-container">
+
+        <p>
+        Greetings from PhysicsWallah Limited!
+        </p>
+
+        <p>
+        At PhysicsWallah Ltd. (PW), we provide personalized academic
+        and Olympiad training programs.
+        </p>
+
+        <p>
+        By submitting this form, I give PW permission to use my/my
+        child’s name, scores, photographs, videos, and testimonials
+        for promotional and educational purposes on platforms such as
+        social media, television, hoardings, interviews, websites,
+        and the PW app.
+        </p>
+
+        <p>
+        PW may also share details of future exam participation for
+        publicity or academic updates, while ensuring full compliance
+        with Indian laws, PW’s User and Privacy Policies, and GDPR
+        standards. PW guarantees that no data will be misused.
+        </p>
+
+        <div class="terms-heading">
+        Purpose of Consent
+        </div>
+
+        <p>
+        To allow PW to feature the student's achievements, learning
+        journey, and experiences in campaigns that motivate other
+        aspirants.
+        </p>
+
+        <div class="terms-heading">
+        Conditions of Usage
+        </div>
+
+        <p>
+        <strong>Preliminary Consent:</strong>
+        This is initial consent for use of personal and media details.
+        </p>
+
+        <p>
+        <strong>Final Consent:</strong>
+        PW may contact again for written approval before publishing.
+        </p>
+
+        <p>
+        <strong>Opt-Out Option:</strong>
+        Consent can be withdrawn anytime by notifying PW in writing.
+        </p>
+
+        <p>
+        <strong>No Misuse:</strong>
+        PW will use all data responsibly.
+        </p>
+
+        <p>
+        <strong>No Monetary Benefit:</strong>
+        No financial or other compensation is applicable.
+        </p>
+
+        <p>
+        <strong>Duration:</strong>
+        Consent remains valid until withdrawn in writing.
+        </p>
+
+        <div class="terms-heading">
+        Final Consent for Promotional Use
+        </div>
+
+        <p>
+        As discussed earlier, we seek your final consent to feature
+        your success story, including your name, photographs, videos,
+        and testimonials, in the following media:
+        </p>
+
+        <p>
+        • Print publications (brochures, magazines, posters)
+        </p>
+
+        <p>
+        • Digital platforms (official websites, online blogs,
+        e-magazines)
+        </p>
+
+        <p>
+        • Social media platforms (YouTube, Instagram, Facebook,
+        LinkedIn, etc.)
+        </p>
+
+        <p>
+        • Video campaigns, advertisements, and other publicity
+        materials
+        </p>
+
+        <p>
+        <strong>
+        1. I/We hereby solemnly declare that the information provided
+        in this form are true to the best of my knowledge and belief.
+        </strong>
+        </p>
+
+        <p>
+        <strong>
+        2. I/We give our full consent to PhysicsWallah for using the
+        above-mentioned assets for the above-said purposes.
+        </strong>
+        </p>
+
+        <p>
+        <strong>
+        3. Further, as the parent/guardian of the student, I undertake
+        to monitor their studies and behaviour, particularly their
+        emotional well-being, throughout their time at the institute.
+        Should my child encounter any unavoidable circumstances,
+        engage in self-destructive activities, or be found guilty of
+        improper conduct/behaviour in class, Telegram groups, or any
+        medium of exchange, I will not hold the institute or its
+        management responsible. I understand and agree that any
+        decision taken by PhysicsWallah will be final in all
+        circumstances or situations.
+        </strong>
+        </p>
+
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown("")
+
+    st.markdown(
+        """
+        ### ← [Back to Selection Predictor](?page=home)
+        """
+    )
+
+    st.stop()
 
 
 # ==================================================
@@ -302,6 +341,7 @@ def load_cutoff_data():
     df = pd.DataFrame(data)
 
     if df.empty:
+
         raise ValueError(
             "Cutoff_Data sheet is empty."
         )
@@ -313,7 +353,7 @@ def load_cutoff_data():
         .str.strip()
     )
 
-    # Check required columns
+    # Required columns
     required_columns = [
         "Class",
         "State",
@@ -392,10 +432,8 @@ def save_student_response(student_data):
         if value is None:
 
             cleaned_data.append("")
-
             continue
 
-        # Convert NumPy / Pandas scalar
         try:
 
             if hasattr(value, "item"):
@@ -548,6 +586,7 @@ gender_options = sorted(
     .tolist()
 )
 
+
 state_options = sorted(
     cutoff_df["State"]
     .dropna()
@@ -555,12 +594,14 @@ state_options = sorted(
     .tolist()
 )
 
+
 class_options = sorted(
     cutoff_df["Class"]
     .dropna()
     .unique()
     .tolist()
 )
+
 
 class_options = [
     int(x)
@@ -589,12 +630,15 @@ with st.form("selection_form"):
         unsafe_allow_html=True
     )
 
+
     name = st.text_input(
         "Full Name *",
         placeholder="Enter your full name"
     )
 
+
     col1, col2 = st.columns(2)
+
 
     with col1:
 
@@ -602,6 +646,7 @@ with st.form("selection_form"):
             "Email ID *",
             placeholder="example@email.com"
         )
+
 
     with col2:
 
@@ -611,7 +656,9 @@ with st.form("selection_form"):
             max_chars=15
         )
 
+
     col1, col2 = st.columns(2)
+
 
     with col1:
 
@@ -619,6 +666,7 @@ with st.form("selection_form"):
             "Gender *",
             gender_options
         )
+
 
     with col2:
 
@@ -628,7 +676,9 @@ with st.form("selection_form"):
             max_value=date.today()
         )
 
+
     col1, col2 = st.columns(2)
+
 
     with col1:
 
@@ -637,12 +687,14 @@ with st.form("selection_form"):
             placeholder="Enter roll number"
         )
 
+
     with col2:
 
         ioqm_registration_no = st.text_input(
             "IOQM Registration No. *",
             placeholder="Enter registration number"
         )
+
 
     # ==============================================
     # SELECTION DETAILS
@@ -657,7 +709,9 @@ with st.form("selection_form"):
         unsafe_allow_html=True
     )
 
+
     col1, col2 = st.columns(2)
+
 
     with col1:
 
@@ -666,6 +720,7 @@ with st.form("selection_form"):
             state_options
         )
 
+
     with col2:
 
         selected_class = st.selectbox(
@@ -673,128 +728,28 @@ with st.form("selection_form"):
             class_options
         )
 
+
     marks = st.number_input(
         "Marks Obtained *",
         min_value=0.0,
         step=1.0
     )
 
+
     # ==============================================
-    # DECLARATION & CONSENT
+    # TERMS & CONDITIONS
     # ==============================================
 
-    st.markdown(
-        """
-        <div class="section-title">
-            📜 Declaration & Consent
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    st.info(
-        """
-Greetings from PhysicsWallah Limited!
-
-At PhysicsWallah Ltd. (PW), we provide personalized academic and Olympiad training programs.
-
-By submitting this form, I give PW permission to use my/my child’s name, scores, photographs, videos, and testimonials for promotional and educational purposes on platforms such as social media, television, hoardings, interviews, websites, and the PW app.
-
-PW may also share details of future exam participation for publicity or academic updates, while ensuring full compliance with Indian laws, PW’s User and Privacy Policies, and GDPR standards. PW guarantees that no data will be misused.
-        """
-    )
-
-    st.subheader(
-        "Purpose of Consent"
-    )
-
-    st.write(
-        """
-To allow PW to feature the student's achievements,
-learning journey, and experiences in campaigns that
-motivate other aspirants.
-        """
-    )
-
-    st.subheader(
-        "Conditions of Usage"
-    )
-
-    st.write(
-        """
-**Preliminary Consent:** This is initial consent for use
-of personal and media details.
-
-**Final Consent:** PW may contact again for written
-approval before publishing.
-
-**Opt-Out Option:** Consent can be withdrawn anytime
-by notifying PW in writing.
-
-**No Misuse:** PW will use all data responsibly.
-
-**No Monetary Benefit:** No financial or other
-compensation is applicable.
-
-**Duration:** Consent remains valid until withdrawn
-in writing.
-        """
-    )
-
-    st.subheader(
-        "Final Consent for Promotional Use"
-    )
-
-    st.write(
-        """
-As discussed earlier, we seek your final consent to
-feature your success story, including your name,
-photographs, videos, and testimonials, in the following
-media:
-
-• Print publications (brochures, magazines, posters)
-
-• Digital platforms (official websites, online blogs,
-e-magazines)
-
-• Social media platforms (YouTube, Instagram, Facebook,
-LinkedIn, etc.)
-
-• Video campaigns, advertisements, and other publicity
-materials
-        """
-    )
-
-    st.write(
-        "**1. I/We hereby solemnly declare that the information "
-        "provided in this form are true to the best of my knowledge "
-        "and belief.**"
-    )
-
-    st.write(
-        "**2. I/We give our full consent to PhysicsWallah for using "
-        "the above-mentioned assets for the above-said purposes.**"
-    )
-
-    st.write(
-        """
-**3. Further, as the parent/guardian of the student, I undertake
-to monitor their studies and behaviour, particularly their emotional
-well-being, throughout their time at the institute. Should my child
-encounter any unavoidable circumstances, engage in self-destructive
-activities, or be found guilty of improper conduct/behaviour in class,
-Telegram groups, or any medium of exchange, I will not hold the
-institute or its management responsible. I understand and agree that
-any decision taken by PhysicsWallah will be final in all circumstances
-or situations.**
-        """
-    )
+    st.markdown("")
 
     consent = st.checkbox(
-        "I have read and understood the above terms and voluntarily give my consent to PhysicsWallah Ltd. *"
+        "I have read and agree to the "
+        "[terms & conditions](?page=terms) *"
     )
 
+
     st.write("")
+
 
     submitted = st.form_submit_button(
         "🔍 CHECK MY SELECTION PREDICTION",
@@ -807,6 +762,7 @@ or situations.**
 # ==================================================
 
 if submitted:
+
 
     # ==============================================
     # VALIDATE NAME
@@ -833,9 +789,11 @@ if submitted:
 
         st.stop()
 
+
     email_pattern = (
         r"^[^@\s]+@[^@\s]+\.[^@\s]+$"
     )
+
 
     if not re.match(
         email_pattern,
@@ -861,11 +819,13 @@ if submitted:
 
         st.stop()
 
+
     cleaned_phone = re.sub(
         r"[\s\-\(\)]",
         "",
         phone
     )
+
 
     if not re.match(
         r"^\+?\d{10,15}$",
@@ -919,13 +879,13 @@ if submitted:
 
 
     # ==============================================
-    # VALIDATE CONSENT
+    # VALIDATE TERMS ACCEPTANCE
     # ==============================================
 
     if not consent:
 
         st.error(
-            "Please accept the Declaration & Consent before submitting."
+            "Please read and accept the Terms & Conditions before submitting."
         )
 
         st.stop()
@@ -959,27 +919,38 @@ if submitted:
         selected_class
     )
 
+
     matching_rows = cutoff_df[
+
         (
             cutoff_df["Class"]
             == selected_class_numeric
         )
+
         &
+
         (
             cutoff_df["State"]
             .str.lower()
             .str.strip()
+
             ==
+
             state.lower().strip()
         )
+
         &
+
         (
             cutoff_df["Gender"]
             .str.lower()
             .str.strip()
+
             ==
+
             gender.lower().strip()
         )
+
     ]
 
 
@@ -1002,9 +973,11 @@ if submitted:
     # ==============================================
 
     cutoff_marks = float(
+
         matching_rows.iloc[0][
             "Cut Off Marks"
         ]
+
     )
 
 
@@ -1173,6 +1146,7 @@ if submitted:
         "%Y-%m-%d %H:%M:%S"
     )
 
+
     student_data = [
 
         # Student Details
@@ -1202,7 +1176,7 @@ if submitted:
         # Selection Chance
         int(selection_chance),
 
-        # Consent
+        # Terms Accepted
         "Yes",
 
         # Submission Time
@@ -1219,6 +1193,7 @@ if submitted:
         save_student_response(
             student_data
         )
+
 
     except Exception as e:
 
@@ -1297,11 +1272,13 @@ if submitted:
             f"{float(marks):g}"
         )
 
+
     else:
 
         # Show marks and selection chance
 
         col1, col2 = st.columns(2)
+
 
         with col1:
 
@@ -1309,6 +1286,7 @@ if submitted:
                 "Your Marks",
                 f"{float(marks):g}"
             )
+
 
         with col2:
 
