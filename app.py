@@ -101,6 +101,46 @@ st.markdown(
         font-weight: 700;
     }
 
+    .seo-content {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        padding: 30px;
+        margin-top: 45px;
+        line-height: 1.8;
+        color: #444444;
+        box-shadow: 0px 4px 12px rgba(0,0,0,0.04);
+    }
+
+    .seo-content h2 {
+        color: #4b1f6f;
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+
+    .seo-content h3 {
+        color: #5b2c83;
+        font-size: 1.3rem;
+        margin-top: 28px;
+        margin-bottom: 10px;
+    }
+
+    .seo-content p {
+        font-size: 1rem;
+        line-height: 1.8;
+        margin-bottom: 16px;
+    }
+
+    .note-box {
+        background: #fff8e7;
+        border-left: 4px solid #f59e0b;
+        padding: 16px;
+        border-radius: 8px;
+        margin-top: 20px;
+        color: #555555;
+        line-height: 1.6;
+    }
+
     .footer-text {
         text-align: center;
         color: #888888;
@@ -156,18 +196,17 @@ def load_cutoff_data():
     df = pd.DataFrame(data)
 
     if df.empty:
+
         raise ValueError(
             "Cutoff_Data sheet is empty."
         )
 
-    # Clean column names
     df.columns = (
         df.columns
         .astype(str)
         .str.strip()
     )
 
-    # Required columns
     required_columns = [
         "Class",
         "State",
@@ -188,33 +227,28 @@ def load_cutoff_data():
             + ", ".join(missing_columns)
         )
 
-    # Clean State
     df["State"] = (
         df["State"]
         .astype(str)
         .str.strip()
     )
 
-    # Clean Gender
     df["Gender"] = (
         df["Gender"]
         .astype(str)
         .str.strip()
     )
 
-    # Convert Class
     df["Class"] = pd.to_numeric(
         df["Class"],
         errors="coerce"
     )
 
-    # Convert Cut Off Marks
     df["Cut Off Marks"] = pd.to_numeric(
         df["Cut Off Marks"],
         errors="coerce"
     )
 
-    # Remove invalid rows
     df = df.dropna(
         subset=[
             "Class",
@@ -312,9 +346,7 @@ def registration_exists(registration_number):
         .str.strip()
         .str.lower()
         .eq(
-            str(
-                registration_number
-            )
+            str(registration_number)
             .strip()
             .lower()
         )
@@ -400,6 +432,7 @@ gender_options = sorted(
     .tolist()
 )
 
+
 state_options = sorted(
     cutoff_df["State"]
     .dropna()
@@ -407,12 +440,14 @@ state_options = sorted(
     .tolist()
 )
 
+
 class_options = sorted(
     cutoff_df["Class"]
     .dropna()
     .unique()
     .tolist()
 )
+
 
 class_options = [
     int(x)
@@ -429,12 +464,14 @@ class_options = [
 MIN_DOB = date(2007, 1, 1)
 MAX_DOB = date(2014, 12, 12)
 
+
 dob_years = list(
     range(
         MIN_DOB.year,
         MAX_DOB.year + 1
     )
 )
+
 
 months = [
     (1, "January"),
@@ -458,6 +495,7 @@ months = [
 
 with st.form("selection_form"):
 
+
     # ==============================================
     # STUDENT DETAILS
     # ==============================================
@@ -471,12 +509,15 @@ with st.form("selection_form"):
         unsafe_allow_html=True
     )
 
+
     name = st.text_input(
         "Full Name *",
         placeholder="Enter your full name"
     )
 
+
     col1, col2 = st.columns(2)
+
 
     with col1:
 
@@ -484,6 +525,7 @@ with st.form("selection_form"):
             "Email ID *",
             placeholder="example@email.com"
         )
+
 
     with col2:
 
@@ -493,7 +535,9 @@ with st.form("selection_form"):
             max_chars=15
         )
 
+
     col1, col2 = st.columns(2)
+
 
     with col1:
 
@@ -501,6 +545,7 @@ with st.form("selection_form"):
             "Gender *",
             gender_options
         )
+
 
     with col2:
 
@@ -512,12 +557,14 @@ with st.form("selection_form"):
     # ==============================================
 
     st.markdown(
-        "**Date of Birth * **"
+        "**Date of Birth ***"
     )
+
 
     dob_col1, dob_col2, dob_col3 = st.columns(
         [1, 1.5, 1]
     )
+
 
     with dob_col1:
 
@@ -526,6 +573,7 @@ with st.form("selection_form"):
             list(range(1, 32)),
             index=0
         )
+
 
     with dob_col2:
 
@@ -536,6 +584,7 @@ with st.form("selection_form"):
             index=0
         )
 
+
     with dob_col3:
 
         dob_year = st.selectbox(
@@ -544,10 +593,6 @@ with st.form("selection_form"):
             index=len(dob_years) - 1
         )
 
-
-    # ==============================================
-    # CREATE DOB
-    # ==============================================
 
     try:
 
@@ -563,10 +608,11 @@ with st.form("selection_form"):
 
 
     # ==============================================
-    # ROLL & REGISTRATION
+    # ROLL NUMBER AND REGISTRATION NUMBER
     # ==============================================
 
     col1, col2 = st.columns(2)
+
 
     with col1:
 
@@ -574,6 +620,7 @@ with st.form("selection_form"):
             "Roll Number *",
             placeholder="Enter roll number"
         )
+
 
     with col2:
 
@@ -596,7 +643,9 @@ with st.form("selection_form"):
         unsafe_allow_html=True
     )
 
+
     col1, col2 = st.columns(2)
+
 
     with col1:
 
@@ -605,12 +654,14 @@ with st.form("selection_form"):
             state_options
         )
 
+
     with col2:
 
         selected_class = st.selectbox(
             "Class *",
             class_options
         )
+
 
     marks = st.number_input(
         "Marks Obtained *",
@@ -628,15 +679,18 @@ with st.form("selection_form"):
         unsafe_allow_html=True
     )
 
+
     terms_col1, terms_col2 = st.columns(
         [0.72, 0.28]
     )
+
 
     with terms_col1:
 
         consent = st.checkbox(
             "I have read and agree to the Terms & Conditions"
         )
+
 
     with terms_col2:
 
@@ -698,10 +752,6 @@ As discussed earlier, we seek your final consent to feature your success story, 
     st.write("")
 
 
-    # ==============================================
-    # SUBMIT BUTTON
-    # ==============================================
-
     submitted = st.form_submit_button(
         "🔍 CHECK MY SELECTION PREDICTION",
         width="stretch"
@@ -744,6 +794,7 @@ if submitted:
     email_pattern = (
         r"^[^@\s]+@[^@\s]+\.[^@\s]+$"
     )
+
 
     if not re.match(
         email_pattern,
@@ -1232,12 +1283,14 @@ if submitted:
 
         col1, col2 = st.columns(2)
 
+
         with col1:
 
             st.metric(
                 "Your Marks",
                 f"{float(marks):g}"
             )
+
 
         with col2:
 
@@ -1273,6 +1326,87 @@ Final selection will be based solely on the official result
 and criteria announced by the concerned authority.
         """
     )
+
+
+# ==================================================
+# IOQM SELECTION PREDICTOR 2026 CONTENT
+# ==================================================
+
+st.markdown(
+    """
+    <div class="seo-content">
+
+    <h2>IOQM Selection Predictor 2026</h2>
+
+    <p>
+    The <strong>IOQM Selection Predictor 2026</strong> by
+    Physics Wallah helps students estimate their chances of
+    qualifying for the next stage of the Indian Olympiad
+    Qualifier in Mathematics (IOQM). By entering your expected
+    or actual <strong>IOQM score</strong> and other relevant
+    details, you can get an estimated idea of whether your
+    performance may meet the expected selection criteria.
+    </p>
+
+    <p>
+    The IOQM is an important mathematics olympiad examination
+    for students aspiring to progress through the
+    <strong>Mathematical Olympiad programme in India</strong>.
+    Since the qualifying criteria and cutoffs can vary based
+    on factors such as category, region, and examination
+    performance, predicting your selection can help you
+    understand your position after the exam.
+    </p>
+
+    <h3>How Does the IOQM Selection Predictor Work?</h3>
+
+    <p>
+    The <strong>IOQM Selection Predictor</strong> uses the
+    information entered by the student to provide an estimated
+    selection outcome. Enter your score and the required details
+    in the predictor to check your
+    <strong>expected IOQM qualification status</strong>.
+    </p>
+
+    <p>
+    The prediction is intended to help students understand their
+    chances based on available information and expected trends.
+    However, the predictor's result should be considered an
+    <strong>estimate and not an official IOQM result or
+    selection confirmation</strong>.
+    </p>
+
+    <h3>Who Should Use the IOQM Selection Predictor?</h3>
+
+    <p>
+    Students who have appeared for IOQM and want to estimate
+    their chances of qualification can use this tool. It can
+    be particularly useful for students looking for an
+    <strong>IOQM cutoff estimate</strong>, understanding their
+    expected performance, and planning their preparation for
+    the next stage.
+    </p>
+
+    <h3>Check Your IOQM Selection Chances</h3>
+
+    <p>
+    Use the <strong>PW IOQM Selection Predictor 2026</strong>
+    to get an early estimate of your qualification chances.
+    Enter your details carefully and use the prediction as a
+    reference while waiting for the
+    <strong>official IOQM result and selection list</strong>.
+    </p>
+
+    <div class="note-box">
+    <strong>Note:</strong> The predicted outcome is indicative
+    and may differ from the final selection announced by the
+    official authorities.
+    </div>
+
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 
 # ==================================================
