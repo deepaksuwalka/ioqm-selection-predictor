@@ -4,7 +4,6 @@ import gspread
 from google.oauth2.service_account import Credentials
 from datetime import datetime, date
 import re
-import calendar
 
 
 # ==================================================
@@ -102,144 +101,6 @@ st.markdown(
         font-weight: 700;
     }
 
-    .terms-box {
-        background: #ffffff;
-        border: 1px solid #d8b4fe;
-        border-radius: 12px;
-        padding: 18px;
-        line-height: 1.7;
-        color: #333333;
-        max-height: 500px;
-        overflow-y: auto;
-    }
-
-    .terms-title {
-        font-size: 1.25rem;
-        font-weight: 800;
-        color: #4b1f6f;
-        margin-bottom: 12px;
-    }
-
-    .result-card-positive {
-        background: #eaf8ef;
-        border: 2px solid #22c55e;
-        padding: 30px;
-        border-radius: 18px;
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    .result-card-warning {
-        background: #fff8e7;
-        border: 2px solid #f59e0b;
-        padding: 30px;
-        border-radius: 18px;
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    .result-card-negative {
-        background: #fff0f0;
-        border: 2px solid #ef4444;
-        padding: 30px;
-        border-radius: 18px;
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    .result-icon {
-        font-size: 3rem;
-        margin-bottom: 10px;
-    }
-
-    .result-name {
-        font-size: 1.7rem;
-        font-weight: 700;
-        margin-bottom: 15px;
-        color: #222222;
-    }
-
-    .probably-qualified {
-        color: #15803d;
-        font-size: 1.8rem;
-        font-weight: 800;
-        margin-bottom: 12px;
-    }
-
-    .possible-selection {
-        color: #b45309;
-        font-size: 1.8rem;
-        font-weight: 800;
-        margin-bottom: 12px;
-    }
-
-    .not-likely {
-        color: #dc2626;
-        font-size: 1.8rem;
-        font-weight: 800;
-        margin-bottom: 12px;
-    }
-
-    .result-description {
-        color: #555555;
-        font-size: 1rem;
-        line-height: 1.6;
-    }
-
-    .marks-card {
-        background: white;
-        border: 1px solid #e5e7eb;
-        border-radius: 16px;
-        padding: 25px;
-        text-align: center;
-        margin-top: 20px;
-        box-shadow: 0px 4px 12px rgba(0,0,0,0.05);
-    }
-
-    .marks-label {
-        color: #666666;
-        font-size: 1rem;
-    }
-
-    .marks-value {
-        font-size: 2.5rem;
-        font-weight: 800;
-        color: #4b1f6f;
-        margin-top: 5px;
-    }
-
-    .chance-card {
-        background: #ffffff;
-        border: 2px solid #7c3aed;
-        border-radius: 16px;
-        padding: 25px;
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    .chance-label {
-        color: #666666;
-        font-size: 1rem;
-    }
-
-    .chance-value {
-        font-size: 3rem;
-        font-weight: 800;
-        color: #7c3aed;
-        margin-top: 5px;
-    }
-
-    .disclaimer {
-        background: #f3f4f6;
-        border-left: 4px solid #6b7280;
-        padding: 16px;
-        border-radius: 8px;
-        margin-top: 25px;
-        color: #444444;
-        line-height: 1.6;
-        font-size: 0.92rem;
-    }
-
     .footer-text {
         text-align: center;
         color: #888888;
@@ -321,6 +182,7 @@ def load_cutoff_data():
     ]
 
     if missing_columns:
+
         raise ValueError(
             "Missing columns in Cutoff_Data: "
             + ", ".join(missing_columns)
@@ -382,13 +244,18 @@ def save_student_response(student_data):
     for value in student_data:
 
         if value is None:
+
             cleaned_data.append("")
             continue
 
         try:
+
             if hasattr(value, "item"):
+
                 value = value.item()
+
         except Exception:
+
             pass
 
         if isinstance(
@@ -400,9 +267,11 @@ def save_student_response(student_data):
                 bool
             )
         ):
+
             cleaned_data.append(value)
 
         else:
+
             cleaned_data.append(
                 str(value)
             )
@@ -428,11 +297,13 @@ def registration_exists(registration_number):
     records = worksheet.get_all_records()
 
     if not records:
+
         return False
 
     df = pd.DataFrame(records)
 
     if "IOQM Registration No." not in df.columns:
+
         return False
 
     return (
@@ -485,6 +356,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
 st.markdown(
     """
@@ -630,12 +502,17 @@ with st.form("selection_form"):
             gender_options
         )
 
+    with col2:
+
+        st.empty()
+
+
     # ==============================================
     # DATE OF BIRTH
     # ==============================================
 
     st.markdown(
-        "**Date of Birth \***"
+        "**Date of Birth * **"
     )
 
     dob_col1, dob_col2, dob_col3 = st.columns(
@@ -667,8 +544,9 @@ with st.form("selection_form"):
             index=len(dob_years) - 1
         )
 
+
     # ==============================================
-    # VALIDATE DOB WHILE FORM IS DISPLAYED
+    # CREATE DOB
     # ==============================================
 
     try:
@@ -683,6 +561,10 @@ with st.form("selection_form"):
 
         selected_dob = None
 
+
+    # ==============================================
+    # ROLL & REGISTRATION
+    # ==============================================
 
     col1, col2 = st.columns(2)
 
@@ -699,6 +581,7 @@ with st.form("selection_form"):
             "IOQM Registration No. *",
             placeholder="Enter registration number"
         )
+
 
     # ==============================================
     # SELECTION DETAILS
@@ -735,6 +618,7 @@ with st.form("selection_form"):
         step=1.0
     )
 
+
     # ==============================================
     # TERMS & CONDITIONS
     # ==============================================
@@ -751,7 +635,7 @@ with st.form("selection_form"):
     with terms_col1:
 
         consent = st.checkbox(
-            "I have read and agree to the Terms & Conditions *"
+            "I have read and agree to the Terms & Conditions"
         )
 
     with terms_col2:
@@ -762,160 +646,61 @@ with st.form("selection_form"):
 
             st.markdown(
                 """
-                <div class="terms-box">
+## Terms & Conditions
 
-                <div class="terms-title">
-                    Terms & Conditions
-                </div>
+**Greetings from PhysicsWallah Limited!**
 
-                <p>
-                <strong>
-                Greetings from PhysicsWallah Limited!
-                </strong>
-                </p>
+At PhysicsWallah Ltd. (PW), we provide personalized academic and Olympiad training programs.
 
-                <p>
-                At PhysicsWallah Ltd. (PW), we provide
-                personalized academic and Olympiad training
-                programs.
-                </p>
+By submitting this form, I give PW permission to use my/my child's name, scores, photographs, videos, and testimonials for promotional and educational purposes on platforms such as social media, television, hoardings, interviews, websites, and the PW app.
 
-                <p>
-                By submitting this form, I give PW permission
-                to use my/my child’s name, scores, photographs,
-                videos, and testimonials for promotional and
-                educational purposes on platforms such as
-                social media, television, hoardings, interviews,
-                websites, and the PW app.
-                </p>
+PW may also share details of future exam participation for publicity or academic updates, while ensuring full compliance with Indian laws, PW's User and Privacy Policies, and GDPR standards. PW guarantees that no data will be misused.
 
-                <p>
-                PW may also share details of future exam
-                participation for publicity or academic updates,
-                while ensuring full compliance with Indian laws,
-                PW’s User and Privacy Policies, and GDPR standards.
-                PW guarantees that no data will be misused.
-                </p>
+### Purpose of Consent
 
-                <h4>
-                Purpose of Consent
-                </h4>
+To allow PW to feature the student's achievements, learning journey, and experiences in campaigns that motivate other aspirants.
 
-                <p>
-                To allow PW to feature the student's achievements,
-                learning journey, and experiences in campaigns
-                that motivate other aspirants.
-                </p>
+### Conditions of Usage
 
-                <h4>
-                Conditions of Usage
-                </h4>
+**Preliminary Consent:** This is initial consent for use of personal and media details.
 
-                <p>
-                <strong>Preliminary Consent:</strong>
-                This is initial consent for use of personal and
-                media details.
-                </p>
+**Final Consent:** PW may contact again for written approval before publishing.
 
-                <p>
-                <strong>Final Consent:</strong>
-                PW may contact again for written approval before
-                publishing.
-                </p>
+**Opt-Out Option:** Consent can be withdrawn anytime by notifying PW in writing.
 
-                <p>
-                <strong>Opt-Out Option:</strong>
-                Consent can be withdrawn anytime by notifying PW
-                in writing.
-                </p>
+**No Misuse:** PW will use all data responsibly.
 
-                <p>
-                <strong>No Misuse:</strong>
-                PW will use all data responsibly.
-                </p>
+**No Monetary Benefit:** No financial or other compensation is applicable.
 
-                <p>
-                <strong>No Monetary Benefit:</strong>
-                No financial or other compensation is applicable.
-                </p>
+**Duration:** Consent remains valid until withdrawn in writing.
 
-                <p>
-                <strong>Duration:</strong>
-                Consent remains valid until withdrawn in writing.
-                </p>
+### Final Consent for Promotional Use
 
-                <h4>
-                Final Consent for Promotional Use
-                </h4>
+As discussed earlier, we seek your final consent to feature your success story, including your name, photographs, videos, and testimonials, in the following media:
 
-                <p>
-                As discussed earlier, we seek your final consent
-                to feature your success story, including your name,
-                photographs, videos, and testimonials, in the
-                following media:
-                </p>
+- Print publications (brochures, magazines, posters)
 
-                <ul>
-                    <li>
-                    Print publications
-                    (brochures, magazines, posters)
-                    </li>
+- Digital platforms (official websites, online blogs, e-magazines)
 
-                    <li>
-                    Digital platforms
-                    (official websites, online blogs,
-                    e-magazines)
-                    </li>
+- Social media platforms (YouTube, Instagram, Facebook, LinkedIn, etc.)
 
-                    <li>
-                    Social media platforms
-                    (YouTube, Instagram, Facebook, LinkedIn, etc.)
-                    </li>
+- Video campaigns, advertisements, and other publicity materials
 
-                    <li>
-                    Video campaigns, advertisements,
-                    and other publicity materials
-                    </li>
-                </ul>
+**1. I/We hereby solemnly declare that the information provided in this form are true to the best of my knowledge and belief.**
 
-                <p>
-                <strong>
-                1. I/We hereby solemnly declare that the
-                information provided in this form are true to
-                the best of my knowledge and belief.
-                </strong>
-                </p>
+**2. I/We give our full consent to PhysicsWallah for using the above-mentioned assets for the above-said purposes.**
 
-                <p>
-                <strong>
-                2. I/We give our full consent to PhysicsWallah
-                for using the above-mentioned assets for the
-                above-said purposes.
-                </strong>
-                </p>
-
-                <p>
-                <strong>
-                3. Further, as the parent/guardian of the student,
-                I undertake to monitor their studies and behaviour,
-                particularly their emotional well-being, throughout
-                their time at the institute. Should my child
-                encounter any unavoidable circumstances, engage in
-                self-destructive activities, or be found guilty of
-                improper conduct/behaviour in class, Telegram groups,
-                or any medium of exchange, I will not hold the
-                institute or its management responsible. I understand
-                and agree that any decision taken by PhysicsWallah
-                will be final in all circumstances or situations.
-                </strong>
-                </p>
-
-                </div>
-                """,
-                unsafe_allow_html=True
+**3. Further, as the parent/guardian of the student, I undertake to monitor their studies and behaviour, particularly their emotional well-being, throughout their time at the institute. Should my child encounter any unavoidable circumstances, engage in self-destructive activities, or be found guilty of improper conduct/behaviour in class, Telegram groups, or any medium of exchange, I will not hold the institute or its management responsible. I understand and agree that any decision taken by PhysicsWallah will be final in all circumstances or situations.**
+                """
             )
 
+
     st.write("")
+
+
+    # ==============================================
+    # SUBMIT BUTTON
+    # ==============================================
 
     submitted = st.form_submit_button(
         "🔍 CHECK MY SELECTION PREDICTION",
@@ -928,6 +713,7 @@ with st.form("selection_form"):
 # ==================================================
 
 if submitted:
+
 
     # ==============================================
     # VALIDATE NAME
@@ -953,6 +739,7 @@ if submitted:
         )
 
         st.stop()
+
 
     email_pattern = (
         r"^[^@\s]+@[^@\s]+\.[^@\s]+$"
@@ -982,11 +769,13 @@ if submitted:
 
         st.stop()
 
+
     cleaned_phone = re.sub(
         r"[\s\-\(\)]",
         "",
         phone
     )
+
 
     if not re.match(
         r"^\+?\d{10,15}$",
@@ -1015,8 +804,7 @@ if submitted:
 
     if (
         selected_dob < MIN_DOB
-        or
-        selected_dob > MAX_DOB
+        or selected_dob > MAX_DOB
     ):
 
         st.error(
@@ -1067,20 +855,7 @@ if submitted:
 
 
     # ==============================================
-    # VALIDATE CONSENT
-    # ==============================================
-
-    if not consent:
-
-        st.error(
-            "Please accept the Terms & Conditions before submitting."
-        )
-
-        st.stop()
-
-
-    # ==============================================
-    # CHECK DUPLICATE
+    # CHECK DUPLICATE REGISTRATION
     # ==============================================
 
     with st.spinner(
@@ -1106,6 +881,7 @@ if submitted:
     selected_class_numeric = float(
         selected_class
     )
+
 
     matching_rows = cutoff_df[
         (
@@ -1321,6 +1097,7 @@ if submitted:
         "%Y-%m-%d %H:%M:%S"
     )
 
+
     student_data = [
 
         # Student Details
@@ -1330,12 +1107,17 @@ if submitted:
         str(gender),
 
         # DOB
-        selected_dob.strftime("%d/%m/%Y"),
+        selected_dob.strftime(
+            "%d/%m/%Y"
+        ),
 
+        # Roll Number
         str(roll_no.strip()),
+
+        # IOQM Registration Number
         str(ioqm_registration_no.strip()),
 
-        # Selection Details
+        # State
         str(state),
 
         # Class
@@ -1353,8 +1135,8 @@ if submitted:
         # Selection Chance
         int(selection_chance),
 
-        # Consent
-        "Yes",
+        # Terms & Conditions Consent
+        "Yes" if consent else "No",
 
         # Submission Time
         str(submission_time)
@@ -1390,9 +1172,9 @@ if submitted:
     st.divider()
 
 
-    # ----------------------------------------------
+    # ==============================================
     # POSITIVE RESULT
-    # ----------------------------------------------
+    # ==============================================
 
     if result_type == "positive":
 
@@ -1405,9 +1187,9 @@ if submitted:
         )
 
 
-    # ----------------------------------------------
+    # ==============================================
     # WARNING RESULT
-    # ----------------------------------------------
+    # ==============================================
 
     elif result_type == "warning":
 
@@ -1420,9 +1202,9 @@ if submitted:
         )
 
 
-    # ----------------------------------------------
+    # ==============================================
     # NEGATIVE RESULT
-    # ----------------------------------------------
+    # ==============================================
 
     else:
 
@@ -1440,9 +1222,6 @@ if submitted:
     # ==============================================
 
     if result_type == "negative":
-
-        # Only marks are shown
-        # Applicable Cutoff is NOT shown
 
         st.metric(
             "Your Marks",
